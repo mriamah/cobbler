@@ -79,7 +79,7 @@ def application(environ, start_response):
 
     # REMOTE_ADDR isn't a required wsgi attribute so it may be naive to assume
     # it's always present in this context.
-    form["REMOTE_ADDR"] = environ.get("REMOTE_ADDR", None)
+    form["REMOTE_ADDR"] = environ.get("HTTP_X_FORWARDED_FOR", None)
 
     # Read config for the XMLRPC port to connect to:
     ydata = settings.read_settings_file()
